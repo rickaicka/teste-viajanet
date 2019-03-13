@@ -1,0 +1,55 @@
+<div class="search-box">
+  <div class="row">
+    <div class="col-xs-12 col-md-offset-2 col-md-2">
+      <div class="tab-passage">
+        <h2>Passagens Aéreas</h2>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-md-offset-2 col-md-9">
+      <div class="box-search">
+        <div class="row">
+          <div class="col-md-8">
+            <h1>Encontre os melhores preços e boa viagem!</h1> <br>
+            <div class="radio-custom">
+                <input type="radio" id="ida-volta-radio" [checked]="idaVolta" (click)="chooseDestiny()">
+                <label for="ida-volta-radio">Ida e Volta</label>
+            </div>
+          </div>
+          <div class="col-md-offset-2 col-md-2">
+            <img src="../../../assets/img/econometro.png" alt="econometro">
+          </div>
+        </div>
+        <form [formGroup]="searchForm">
+          <div class="row inputs-origem-destino">
+            <div class="col-md-6 col-xs-12">
+              <label for="input-origem">Origem</label>
+              <input type="text" id="input-origem" formControlName="origin" (focus)="getAirportsOrigin()">
+              <div class="list-airports" *ngIf="originAirports?.length > 0">
+                <ul>
+                  <li class="item-list-airport" *ngFor="let airport of originAirports" (click)="setAirportOrigin(airport.Name)">
+                    <p>{{airport.Name}}</p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col-md-6 col-xs-12" *ngIf="idaVolta">
+              <label for="input-destino">Destino</label>
+              <input type="text" id="input-destino" formControlName="destiny" (focus)="getAirportsDestiny()">
+
+              <div class="list-airports" *ngIf="destinyAirports?.length > 0">
+                <ul>
+                  <li class="item-list-airport" *ngFor="let airport of destinyAirports" (click)="setAirportDestiny(airport.Name)">
+                    <p>{{airport.Name}}</p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

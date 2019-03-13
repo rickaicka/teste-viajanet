@@ -1,0 +1,159 @@
+.search-box{
+    margin-top: 88px;
+
+    & .tab-passage{
+        background-color: #016ac5;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        height: 48px;
+        & h2{
+            font-weight: bold;
+            font-size: 24px;
+            padding: 15px 20px;
+            color: white;
+            @media (max-width: 768px){
+                text-align: center;
+            }
+        }
+    }
+
+    & .box-search{
+        background-color: #016ac5;
+        border-top-right-radius: 5px;
+        @media (max-width: 768px){
+            border-top-right-radius: 0;
+        }
+        & h1{
+            font-weight: bold;
+            font-size: 26px;
+            padding-top: 20px;
+            padding-left: 20px;
+            color: white;
+            @media (max-width: 768px){
+                display: none;
+            }
+        }
+        & img{
+            padding-top: 25px;
+            @media (max-width: 768px){
+                display: none;
+                font-size: 22px;
+            }
+        }
+
+        & .radio-custom{
+            padding-left: 20px;
+            padding-top: 25px;
+            & input[type=radio]{
+                position: absolute;
+                width: 15px;
+                height: 15px;
+                border: 1px solid #ddd;
+                border-radius: 100%;
+                background: #fff;
+                margin-left: 0;
+
+                &:checked + label, [type="radio"]:not(:checked) + label{
+                    position: relative;
+                    padding-left: 28px;
+                    cursor: pointer;
+                    line-height: 20px;
+                    display: inline-block;
+                    color: white;
+                }
+
+                &:checked + label:before, [type="radio"]:not(:checked) + label:before {
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    width: 14px;
+                    height: 14px;
+                    border: 1px solid #ddd;
+                    border-radius: 100%;
+                    background: #fff;
+                }
+                
+                &:checked + label:after, [type="radio"]:not(:checked) + label:after{
+                    content: '';
+                    width: 8px;
+                    height: 8px;
+                    background: #0069c9;
+                    position: absolute;
+                    top: 4px;
+                    left: 4px;
+                    border-radius: 100%;
+                    -webkit-transition: all 0.2s ease;
+                    transition: all 0.2s ease;
+                }
+
+                &:not(:checked) + label:after {
+                    opacity: 0;
+                    -webkit-transform: scale(0);
+                    transform: scale(0);
+                }
+                
+                &:checked + label:after {
+                    opacity: 1;
+                    -webkit-transform: scale(1);
+                    transform: scale(1);
+                }
+            }
+            
+            & label{
+                cursor: pointer;
+                padding-left: 28px;
+                line-height: 20px;
+                color: white;
+                font-size: 14px;
+            }
+        }
+
+        & .inputs-origem-destino{            
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-top: 20px;
+
+            & label{
+                width: 100%;
+                color: white;
+                font-weight: bold;
+                font-size: 16px;
+            }
+            
+            & input{
+                margin-top: 8px;
+                width: 98%;
+                border-radius: 3px;
+                border: none;
+                background-color: white;
+                padding: 15px 0 15px 5px;
+                color: #0766b6;
+                font-weight: bold;
+                font-size: 16px;
+            }
+
+            & .list-airports{
+                width: 98.7%;
+                height: auto;
+                background-color: white;
+                border: 1px solid #8b8b8b;
+                border-bottom-left-radius: 5px;
+                border-bottom-right-radius: 5px;
+
+                & .item-list-airport{
+                    padding: 10px;
+                    color: #0766b6;
+                    font-weight: bold;
+                    font-size: 16px;
+                    cursor: pointer;
+                    border-bottom: 1px solid #ccc;
+                    &:hover{
+                        background-color: #5c8ab1;
+                        color: white;
+                    }
+                }
+            }
+        }
+    }
+}
