@@ -25,8 +25,8 @@
           <div class="row inputs-origem-destino">
             <div class="col-md-6 col-xs-12">
               <label for="input-origem">Origem</label>
-              <input type="text" id="input-origem" formControlName="origin" (focus)="getAirportsOrigin()">
-              <div class="list-airports" *ngIf="originAirports?.length > 0">
+              <input type="text" id="input-origem" formControlName="origin" (keyup)="getAirportsOrigin($event)">
+              <div class="list-airports" *ngIf="originAirports?.length >= 1">
                 <ul>
                   <li class="item-list-airport" *ngFor="let airport of originAirports" (click)="setAirportOrigin(airport.Name)">
                     <p>{{airport.Name}}</p>
@@ -39,7 +39,7 @@
               <label for="input-destino">Destino</label>
               <input type="text" id="input-destino" formControlName="destiny" (focus)="getAirportsDestiny()">
 
-              <div class="list-airports" *ngIf="destinyAirports?.length > 0">
+              <div class="list-airports" *ngIf="destinyAirports?.length >= 1">
                 <ul>
                   <li class="item-list-airport" *ngFor="let airport of destinyAirports" (click)="setAirportDestiny(airport.Name)">
                     <p>{{airport.Name}}</p>

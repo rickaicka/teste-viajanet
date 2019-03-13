@@ -10,8 +10,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 export class SearchComponent implements OnInit {
 
   public idaVolta = false;
-  public originAirports: [];
-  public destinyAirports: [];
+  public originAirports: Array<any> = [];
+  public destinyAirports: Array<any> = [];
 
 
   public searchForm = new FormGroup({
@@ -36,36 +36,28 @@ export class SearchComponent implements OnInit {
     this.destinyAirports = [];
   }
 
-  getAirportsOrigin() {
-    this.searchForm.controls['origin'].valueChanges.subscribe(
-      (selectedValue) => {
-        if (selectedValue.length >= 3) {
-          this.searchService.getAirpotsByAutocomplete(selectedValue).subscribe(
-            (data) => {
-              this.originAirports = data.Locations;
-            }
-          );
-        } else {
-          this.originAirports = [];
+  getAirportsOrigin(event: any) {
+    if (this.searchForm.controls.origin.value.length >= 3) {
+      this.searchService.getAirpotsByAutocomplete(this.searchForm.controls.origin.value).subscribe(
+        (data) => {
+          this.originAirports = data.Locations;
         }
-      }
-    );
+      );
+    } else {
+      this.originAirports = [];
+    }
   }
 
   getAirportsDestiny() {
-    this.searchForm.controls['destiny'].valueChanges.subscribe(
-      (selectedValue) => {
-        if (selectedValue.length >= 3) {
-          this.searchService.getAirpotsByAutocomplete(selectedValue).subscribe(
-            (data) => {
-              this.destinyAirports = data.Locations;
-            }
-          );
-        } else {
-          this.destinyAirports = [];
+    if (this.searchForm.controls.destiny.value.length >= 3) {
+      this.searchService.getAirpotsByAutocomplete(this.searchForm.controls.destiny.value).subscribe(
+        (data) => {
+          this.destinyAirports = data.Locations;
         }
-      }
-    );
+      );
+    } else {
+      this.destinyAirports = [];
+    }
   }
 
   chooseDestiny() {
