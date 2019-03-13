@@ -32,7 +32,7 @@ export class SearchComponent implements OnInit {
   }
 
   setAirportDestiny(airport: string) {
-    this.searchForm.controls.origin.setValue(airport);
+    this.searchForm.controls.destiny.setValue(airport);
     this.destinyAirports = [];
   }
 
