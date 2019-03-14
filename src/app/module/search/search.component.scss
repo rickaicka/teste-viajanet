@@ -14,6 +14,9 @@
             font-size: 24px;
             padding: 15px 20px;
             color: white;
+            @media (min-width: 320px) and (max-width: 374px){
+                font-size: 20px;
+            }
             @media (max-width: 768px){
                 text-align: center;
                 padding: 15px 30px;
@@ -24,6 +27,7 @@
     & .box-search{
         background-color: #016ac5;
         border-top-right-radius: 5px;
+        min-height: 350px;
         @media (max-width: 768px){
             border-top-right-radius: 0;
         }
@@ -51,6 +55,7 @@
             padding-top: 25px;
             @media (max-width: 768px){
                 padding-left: 30px;
+                padding-top: 0;
             }
             & input[type=radio]{
                 position: absolute;
@@ -117,7 +122,7 @@
             }
         }
 
-        & .inputs-origem-destino{            
+        & .inputs-origem-destino, & .inputs-detalhes{            
             padding-left: 20px;
             padding-right: 20px;
             padding-top: 20px;
@@ -125,16 +130,20 @@
                 padding-left: 30px;
             }
 
-            & label{
+            & label, & p{
                 width: 100%;
                 color: white;
                 font-weight: bold;
                 font-size: 16px;
+                
+                @media (min-width: 320px) and (max-width: 374px){
+                    font-size: 14px;
+                }
             }
             
             & input{
                 margin-top: 8px;
-                width: 98%;
+                width: 100%;
                 border-radius: 3px;
                 border: none;
                 background-color: white;
@@ -143,28 +152,36 @@
                 font-weight: bold;
                 font-size: 16px;
                 @media (max-width: 768px){
-                    width: 94%
+                    margin-bottom: 16px;
                 }
             }
 
             & .list-airports{
-                width: 98.7%;
-                height: auto;
+                z-index: 1;
+                width: 96%;
                 background-color: white;
                 border: 1px solid #8b8b8b;
                 border-bottom-left-radius: 5px;
                 border-bottom-right-radius: 5px;
+                position: absolute;
+                float: left;
+                overflow-y: scroll;
+                height: 142px;
 
                 & .item-list-airport{
                     padding: 10px;
-                    color: #0766b6;
                     font-weight: bold;
                     font-size: 16px;
                     cursor: pointer;
                     border-bottom: 1px solid #ccc;
+                    & p{
+                        color: #0766b6;
+                    }
                     &:hover{
                         background-color: #5c8ab1;
-                        color: white;
+                        & p{
+                            color: white;
+                        }
                     }
                 }
             }
@@ -174,6 +191,139 @@
                     margin-top: 16px;
                 }
             }
+
+            & .data-input{
+                position: relative;
+
+                & input{
+                    color: #424242;
+                }
+                & i{
+                    position: absolute;
+                    float: right;
+                    top: 55%;
+                    right: 7%;
+                    color: #999;
+                    @media (max-width: 768px){
+                        top: 47%;
+                        right: 13%;
+                    }
+                }
+            }
+        }
+        & .btn-dropdown{
+            z-index:2;
+            cursor: pointer;
+            &:after{
+                content:' ▼';
+                float: right;
+                margin-right: 5px;
+                cursor: pointer;
+                @media (max-width: 768px){
+                    display: none;
+                }
+            }
+            
+            @media (max-width: 768px){
+                font-size: 14px!important;
+            }
+        }
+        & .dropdown{
+            display:inline-block;
+            margin-top: 6px;
+            width: 100%;
+            border-radius: 3px;
+            border: none;
+            background-color: 01478c;
+            padding: 18px 0 18px 5px;
+            font-weight: bold;
+            font-size: 16px;
+            background:#01478c;
+            cursor: pointer;
+        }
+        & .dropdown-overlay{
+            display:none;
+            position:fixed;
+            top:0;
+            right:0;
+            bottom:0;
+            left:0;
+            z-index:1;
+        }
+        & .dropdown-inner{
+            background:#01478c;
+            border-radius:3px;
+            position:absolute;
+            opacity:0;
+            transition:opacity .3s,visibility .3s;
+            visibility:hidden;
+            z-index:2;
+            margin-top: 12px;
+            left: 16px;
+            width: 88.4%;
+            @media (max-width: 768px){
+                height: 86px;
+                overflow-y: scroll;
+            }
+            & ul{
+                & li{
+                    cursor: pointer;
+                    padding: 10px;
+                    & span{
+                        color: white;
+                        font-weight: bold;
+                        font-size: 14px;
+                    }
+                    &:hover{
+                        background-color: #0263c4;
+                    }
+                }
+            }
+        }
+        & .dropdown-hover:hover .dropdown-inner,.dropdown-open:checked ~ .dropdown-inner{
+            opacity:100;
+            visibility:visible
+        }
+        & .dropdown-hover:hover .dropdown-overlay,.dropdown-open:checked ~ .dropdown-overlay{
+            display:block
+        }
+        & .opcoes-busca{
+            display: none;
+            @media (min-width: 320px) and (max-width: 375px){
+                display: block;
+                font-weight: bold;
+                font-size: 18px;
+                color: white;
+                padding: 16px 0 16px 30px;
+            }
+        }
+        & .limit-age{
+            display: none;
+            @media (min-width: 320px) and (max-width: 375px){
+                display: block;
+                font-size: 12px;
+                color: white;
+                padding-top: 8px;
+            }
+
         }
     }
+
+    & .btn-pesquisar{
+        background-color: #57b401;
+        width: 100%;
+        opacity: 0.8;
+        border-bottom-right-radius: 5px;
+        border-bottom-left-radius: 5px;
+        cursor: pointer;
+        & p{            
+            padding: 16px 0;
+            font-weight: bold;
+            font-size: 24px;
+            color: white;
+            text-align: center;
+        }
+
+    }
 }
+

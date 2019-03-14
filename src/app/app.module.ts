@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { SearchModule } from './module/search/search.module';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import {NgxMaskModule} from 'ngx-mask';
 
 
 @NgModule({

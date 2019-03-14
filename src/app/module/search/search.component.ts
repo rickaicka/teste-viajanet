@@ -12,11 +12,22 @@ export class SearchComponent implements OnInit {
   public idaVolta = false;
   public originAirports: Array<any> = [];
   public destinyAirports: Array<any> = [];
+  public adultsList: Array<string> = ['1 Adulto', '2 Adultos', '3 Adultos'];
+  public childrenList: Array<string> = ['Nenhuma', '1 Criança', '2 Crianças'];
+  public babiesList: Array<string> = ['Nenhum', '1 Bebê', '2 Bebês'];
+  public adultDefault = '2 Adultos';
+  public childDefault = 'Nenhuma';
+  public babyDefault = 'Nenhum';
 
 
   public searchForm = new FormGroup({
     origin: new FormControl(''),
     destiny: new FormControl(''),
+    departureDate: new FormControl(''),
+    returnDate: new FormControl(''),
+    qttAdult: new FormControl('2 Adultos'),
+    qttChild: new FormControl('Nenhuma'),
+    qttBaby: new FormControl('Nenhum'),
   });
 
   constructor(
@@ -34,6 +45,19 @@ export class SearchComponent implements OnInit {
   setAirportDestiny(airport: string) {
     this.searchForm.controls.destiny.setValue(airport);
     this.destinyAirports = [];
+  }
+
+  setAdult(item: string) {
+    this.searchForm.controls.qttAdult.setValue(item);
+    this.adultDefault = item;
+  }
+  setChild(item: string) {
+    this.searchForm.controls.qttChild.setValue(item);
+    this.childDefault = item;
+  }
+  setBaby(item: string) {
+    this.searchForm.controls.qttBaby.setValue(item);
+    this.babyDefault = item;
   }
 
   getAirportsOrigin(event: any) {
@@ -66,6 +90,10 @@ export class SearchComponent implements OnInit {
     } else {
       this.idaVolta = false;
     }
+  }
+
+  submitForm() {
+    console.log(this.searchForm.value);
   }
 
 }

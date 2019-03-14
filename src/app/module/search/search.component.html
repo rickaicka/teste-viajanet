@@ -1,16 +1,16 @@
 <div class="search-box">
   <div class="row">
-    <div class="col-xs-12 col-md-offset-2 col-lg-3 col-md-4">
+    <div class="col-xs-12 col-md-offset-1 col-lg-3 col-md-4">
       <div class="tab-passage">
         <h2>Passagens Aéreas</h2>
       </div>
     </div>
   </div>
   <div class="row">
-    <div class="col-xs-12 col-md-offset-2 col-md-9">
+    <div class="col-xs-12 col-md-offset-1 col-md-10">
       <div class="box-search">
         <div class="row">
-          <div class="col-md-8">
+          <div class="col-md-8 col-xs-12">
             <h1>Encontre os melhores preços e boa viagem!</h1> <br>
             <div class="radio-custom">
                 <input type="radio" id="ida-volta-radio" [checked]="idaVolta" (click)="chooseDestiny()">
@@ -23,7 +23,7 @@
         </div>
         <form [formGroup]="searchForm">
           <div class="row inputs-origem-destino">
-            <div class="col-md-6 col-xs-12">
+            <div class="col-md-6 col-xs-12" [ngStyle]="{'position': 'relative'}">
               <label for="input-origem">Origem</label>
               <input type="text" id="input-origem" formControlName="origin" (keyup)="getAirportsOrigin($event)">
               <div class="list-airports" *ngIf="originAirports?.length >= 1">
@@ -35,7 +35,7 @@
               </div>
             </div>
 
-            <div class="col-md-6 col-xs-12 input-destino" *ngIf="idaVolta">
+            <div class="col-md-6 col-xs-12"  [ngStyle]="{'position': 'relative'}" *ngIf="idaVolta">
               <label for="input-destino">Destino</label>
               <input type="text" id="input-destino" formControlName="destiny" (keyup)="getAirportsDestiny($event)">
 
@@ -48,7 +48,88 @@
               </div>
             </div>
           </div>
+
+          <div class="row inputs-detalhes">
+            <div class="col-md-6 col-xs-12">
+              <div class="row">
+                <div class="col-md-6 col-xs-6 data-input data-input-ida">
+                  <label for="input-ida">Data de Ida</label>
+                  <input type="text" mask="00/00/0000" id="input-ida" formControlName="departureDate">
+                  <i class="fas fa-calendar-week"></i>
+                </div>  
+                <div class="col-md-6 col-xs-6 data-input">
+                  <label for="input-volta">Data de Volta</label>
+                  <input type="text" mask="00/00/0000" id="input-volta" formControlName="returnDate">
+                  <i class="fas fa-calendar-week"></i>
+                </div> 
+              </div>              
+            </div>
+            <div class="col-md-6 col-xs-12">
+              <div class="row">
+                <div class="col-md-4 col-xs-4 data-input">
+                    <p>Adultos</p>
+                    <div class="dropdown">
+                      <label for="dropdown-1" class="btn btn-dropdown">{{adultDefault}}</label>
+                      <input class="dropdown-open" type="checkbox" id="dropdown-1" aria-hidden="true" hidden />
+                      <label for="dropdown-1" class="dropdown-overlay"></label>
+                      <div class="dropdown-inner">
+                        <ul>
+                          <li (click)="setAdult(item)" *ngFor="let item of adultsList">
+                            <span>{{item}}</span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                </div>  
+                <div class="col-md-4 col-xs-4 data-input">
+                  <p>Crianças</p>
+                  <div class="dropdown">
+                    <label for="dropdown-2" class="btn btn-dropdown">{{childDefault}}</label>
+                    <input class="dropdown-open" type="checkbox" id="dropdown-2" aria-hidden="true" hidden />
+                    <label for="dropdown-2" class="dropdown-overlay"></label>
+                    <div class="dropdown-inner">
+                      <ul>
+                        <li (click)="setChild(item)" *ngFor="let item of childrenList">
+                          <span>{{item}}</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>                  
+                  <span class="limit-age">2 a 11 anos</span>
+                </div>  
+                <div class="col-md-4 col-xs-4 data-input">
+                  <p>Bebês</p>
+                  <div class="dropdown">
+                    <label for="dropdown-3" class="btn btn-dropdown">{{babyDefault}}</label>
+                    <input class="dropdown-open" type="checkbox" id="dropdown-3" aria-hidden="true" hidden />
+                    <label for="dropdown-3" class="dropdown-overlay"></label>
+                    <div class="dropdown-inner">
+                      <ul>
+                        <li (click)="setBaby(item)" *ngFor="let item of babiesList">
+                          <span>{{item}}</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <span class="limit-age">0 a 23 meses</span>
+                </div>
+              </div> 
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-12">
+              <p class="opcoes-busca">+ Opções de busca</p>
+            </div>
+          </div>
         </form>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-md-offset-1 col-lg-10 col-md-10">
+      <div class="btn-pesquisar" (click)="submitForm()">
+        <p>Pesquisar</p>
       </div>
     </div>
   </div>
